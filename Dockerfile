@@ -26,12 +26,15 @@ ADD odbc.ini /root/.odbc.ini
 ENV ODBCINI=/root/.odbc.ini
 ENV VERTICAINI=/root/.odbc.ini
 
-# install anaconda + pyodbc
+# install anaconda + pyodbc + other libs deps
 WORKDIR /tmp
 RUN curl https://3230d63b5fc54e62148e-c95ac804525aac4b6dba79b00b39d1d3.ssl.cf1.rackcdn.com/Anaconda-2.2.0-Linux-x86_64.sh > Anaconda-2.2.0-Linux-x86_64.sh
-RUN DEBIAN_FRONTEND=noninteractive bash Anaconda-2.2.0-Linux-x86_64.sh -b
+ENV DEBIAN_FRONTEND noninteractive
+RUN bash Anaconda-2.2.0-Linux-x86_64.sh -b
 ENV PATH /root/anaconda/bin:$PATH
 RUN conda install pyodbc
+RUN conda install seaborn
+RUN apt-get -y install libglib2.0-0 libxext6 python-matplotlib libsm-dev
 
 # home directory for ipython notebook
 RUN mkdir -p /ipython-data
