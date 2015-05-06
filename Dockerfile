@@ -40,4 +40,4 @@ RUN apt-get -y install libglib2.0-0 libxext6 python-matplotlib libsm-dev
 RUN mkdir -p /ipython-data
 WORKDIR /ipython-data
 EXPOSE 8888
-CMD ipython notebook --ip='*' --no-browser
+CMD ipython notebook --ip='*' --no-browser --script
