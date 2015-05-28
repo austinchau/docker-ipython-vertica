@@ -36,6 +36,10 @@ RUN conda install pyodbc
 RUN conda install seaborn
 RUN apt-get -y install libglib2.0-0 libxext6 python-matplotlib libsm-dev
 
+# install native python vertica driver
+RUN pip install --pre pytz
+RUN pip install vertica-python
+
 # home directory for ipython notebook
 RUN mkdir -p /ipython-data
 WORKDIR /ipython-data
